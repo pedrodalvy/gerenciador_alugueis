@@ -7,18 +7,18 @@ use Illuminate\Http\Request;
 
 class EnderecoController extends Controller
 {
-    static function cadastrar(array $attributes = [])
+    static function cadastrar($request)
     {
-        if (!$attributes) return false;
+        if (!$request->cep) return false;
 
         $endereco = new Endereco();
 
-        $endereco->cep = $attributes['cep'];
-        $endereco->logradouro = $attributes['logradouro'];
-        $endereco->numero = $attributes['numero'];
-        $endereco->complemento = $attributes['complemento'];
-        $endereco->bairro = $attributes['bairro'];
-        $endereco->municipio_id = $attributes['municipio_id'];
+        $endereco->cep = $request->get('cep');
+        $endereco->logradouro = $request->get('logradouro');
+        $endereco->numero = $request->get('numero');
+        $endereco->complemento = $request->get('complemento');
+        $endereco->bairro = $request->get('bairro');
+        $endereco->municipio_id = $request->get('municipio_id');
         $endereco->save();
 
         if ($endereco->id) {
@@ -28,18 +28,18 @@ class EnderecoController extends Controller
         return false;
     }
 
-    static function editar(array $attributes = [])
+    static function editar($request)
     {
-        if (!$attributes) return false;
+        if (!$request->cep) return false;
 
-        $endereco = Endereco::find($attributes['id']) ?? abort('404');
+        $endereco = Endereco::find($request->endereco_id) ?? abort('404');
 
-        $endereco->cep = $attributes['cep'];
-        $endereco->logradouro = $attributes['logradouro'];
-        $endereco->numero = $attributes['numero'];
-        $endereco->complemento = $attributes['complemento'];
-        $endereco->bairro = $attributes['bairro'];
-        $endereco->municipio_id = $attributes['municipio_id'];
+        $endereco->cep = $request->get('cep');
+        $endereco->logradouro = $request->get('logradouro');
+        $endereco->numero = $request->get('numero');
+        $endereco->complemento = $request->get('complemento');
+        $endereco->bairro = $request->get('bairro');
+        $endereco->municipio_id = $request->get('municipio_id');
         $endereco->save();
 
         return true;

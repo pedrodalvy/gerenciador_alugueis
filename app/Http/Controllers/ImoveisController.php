@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Endereco;
 use App\Imovel;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
 
 class ImoveisController extends Controller
 {
@@ -24,20 +23,8 @@ class ImoveisController extends Controller
 
     public function cadastrar(Request $request)
     {
-        $imovelEndereco = null;
 
-        if ($request->cep) {
-            $endereco = [
-                'cep' => $request->get('cep'),
-                'logradouro' => $request->get('logradouro'),
-                'numero' => $request->get('numero'),
-                'complemento' => $request->get('complemento'),
-                'bairro' => $request->get('bairro'),
-                'municipio_id' => $request->get('municipio_id')
-            ];
-
-            $imovelEndereco = EnderecoController::cadastrar($endereco);
-        }
+        $imovelEndereco = EnderecoController::cadastrar($request);
 
         if (!$imovelEndereco) return 'Falha ao cadastrar endereço';
 
@@ -70,17 +57,7 @@ class ImoveisController extends Controller
 
     public function editar(Request $request, $id)
     {
-        $imovelEndereco = [
-            'id' => $request->get('endereco_id'),
-            'cep' => $request->get('cep'),
-            'logradouro' => $request->get('logradouro'),
-            'numero' => $request->get('numero'),
-            'complemento' => $request->get('complemento'),
-            'bairro' => $request->get('bairro'),
-            'municipio_id' => $request->get('municipio_id')
-        ];
-
-        $imovelEndereco = EnderecoController::editar($imovelEndereco);
+        $imovelEndereco = EnderecoController::editar($request);
 
         if (!$imovelEndereco) return 'Falha ao editar endereço';
 
