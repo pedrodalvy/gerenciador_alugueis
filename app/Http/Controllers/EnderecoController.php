@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class EnderecoController extends Controller
 {
-    static function cadastrar($request)
+    static function cadastrar(Request $request)
     {
         if (!$request->cep) return false;
 
@@ -28,7 +28,7 @@ class EnderecoController extends Controller
         return false;
     }
 
-    static function editar($request)
+    static function editar(Request $request)
     {
         if (!$request->cep) return false;
 

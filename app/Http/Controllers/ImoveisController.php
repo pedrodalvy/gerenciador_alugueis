@@ -57,11 +57,11 @@ class ImoveisController extends Controller
 
     public function editar(Request $request, $id)
     {
-        $imovelEndereco = EnderecoController::editar($request);
-
-        if (!$imovelEndereco) return 'Falha ao editar endereço';
 
         $imovel = Imovel::find($id) ?? abort('404');
+
+        $imovelEndereco = EnderecoController::editar($request);
+        if (!$imovelEndereco) return 'Falha ao editar endereço';
 
         $imovel->descricao = $request->get('descricao');
         $imovel->inscricao_imobiliaria = $request->get('inscricao_imobiliaria');
