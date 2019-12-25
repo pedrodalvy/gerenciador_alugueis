@@ -25,7 +25,7 @@ Route::group(['prefix' => '/inquilino'], function () {
     Route::get('{id}/editar', 'InquilinosController@formularioEditar')->name('inquilinoFormularioEditar');
     Route::post('{id}/editar', 'InquilinosController@editar')->name('inquilinoEditar');
 
-    Route::post('{id}/remover', 'InquilinosController@remover')->name('inquilinoRemover');
+    Route::get('{id}/remover', 'InquilinosController@remover')->name('inquilinoRemover');
 });
 
 
@@ -38,7 +38,7 @@ Route::group(['prefix' => '/imoveis'], function () {
     Route::get('{id}/editar', 'ImoveisController@formularioEditar')->name('imovelFormularioEditar');
     Route::post('{id}/editar', 'ImoveisController@editar')->name('imovelEditar');
 
-    Route::post('{id}/remover', 'ImoveisController@remover')->name('imovelRemover');
+    Route::get('{id}/remover', 'ImoveisController@remover')->name('imovelRemover');
 });
 
 
@@ -51,5 +51,5 @@ Route::group(['prefix' => '/proprietarios'], function () {
     Route::get('{id}/editar', 'ProprietariosController@formularioEditar')->name('proprietariosFormularioEditar');
     Route::post('{id}/editar', 'ProprietariosController@editar')->name('proprietariosEditar');
 
-    Route::post('{id}/remover', 'ProprietariosController@remover')->name('proprietariosRemover');
+    Route::get('{id}/remover', 'ProprietariosController@remover')->name('proprietariosRemover');
 });

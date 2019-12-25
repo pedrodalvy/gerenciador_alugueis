@@ -20,6 +20,7 @@
         <th>Inscrição imobiliária</th>
         <th>Valor para venda</th>
         <th>Valor para aluguel</th>
+        <th>Ações</th>
     </tr>
     </thead>
     <tbody>
@@ -31,6 +32,10 @@
             <td>{{ $imovel->inscricao_imobiliaria }}</td>
             <td>{{ $imovel->valor_venda }}</td>
             <td>{{ $imovel->valor_aluguel }}</td>
+            <td>
+                <a href="{{ route('imovelFormularioEditar', $imovel->id) }}">Editar</a> |
+                <a href="{{ route('imovelRemover', $imovel->id) }}">Remover</a>
+            </td>
         </tr>
     @empty
         <tr>
