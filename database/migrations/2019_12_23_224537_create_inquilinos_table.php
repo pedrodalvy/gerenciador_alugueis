@@ -22,9 +22,6 @@ class CreateInquilinosTable extends Migration
             $table->string('telefone_adicional')->nullable();
             $table->string('telefone_contato')->nullable();
             $table->string('telefone_contato_adicional')->nullable();
-            $table->string('agencia')->nullable();
-            $table->string('conta')->nullable();
-            $table->integer('operacao')->nullable();
             $table->unsignedBigInteger('endereco_id');
             $table->foreign('endereco_id')->references('id')->on('enderecos');
             $table->timestamps();

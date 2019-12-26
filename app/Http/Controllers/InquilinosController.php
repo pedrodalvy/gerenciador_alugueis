@@ -2,40 +2,89 @@
 
 namespace App\Http\Controllers;
 
+use App\Endereco;
+use App\Inquilino;
 use Illuminate\Http\Request;
 
 class InquilinosController extends Controller
 {
     public function lista()
     {
-        return 'Implementar lista com todos os inquilinos';
+        $inquilinos = Inquilino::all();
+
+        return view('inquilinos.lista')->with('inquilinos', $inquilinos);
     }
 
 
     public function formularioCadastrar()
     {
-        return 'Implementar formulario para cadastro de inquilinos';
+        return view('inquilinos.formularioCadastrar');
     }
 
-    public function cadastrar()
+    public function cadastrar(Request $request)
     {
-        return 'Implementar cadastro no banco de dados';
+        $inquilinoEndereco = EnderecoController::cadastrar($request);
+        if (!$inquilinoEndereco) return 'Falha ao cadastrar endereço';
+
+        $inquilino = new Inquilino();
+
+        $inquilino->nome = $request->get('nome');
+        $inquilino->cpf = $request->get('cpf');
+        $inquilino->email = $request->get('email');
+        $inquilino->telefone = $request->get('telefone');
+        $inquilino->telefone_adicional = $request->get('telefone_adicional');
+        $inquilino->telefone_contato = $request->get('telefone_contato');
+        $inquilino->telefone_contato_adicional = $request->get('telefone_contato_adicional');
+        $inquilino->endereco_id = $inquilinoEndereco;
+        $inquilino->save();
+
+        if ($inquilino->id) {
+            return redirect()->to(route('inquilinoListar'));
+        }
+
+        return 'Falha ao cadastrar o inquilino';
     }
 
 
-    public function formularioEditar()
+    public function formularioEditar($id)
     {
-        return 'Implementar formulário para editar inquilinos';
+        $inquilino = Inquilino::find($id) ?? abort('404');
+        $inquilinoEndereco = Endereco::find($inquilino->endereco_id) ?? abort('404');
+
+        return view('inquilinos.formularioEditar')
+            ->with('inquilino', $inquilino)
+            ->with('inquilinoEndereco', $inquilinoEndereco);
     }
 
-    public function editar($id)
+    public function editar(Request $request, $id)
     {
-        return 'Implementar alteração do cadastro de inquilinos';
+        $inquilino = Inquilino::find($id) ?? abort('404');
+
+        $inquilinoEndereco = EnderecoController::editar($request);
+        if (!$inquilinoEndereco) return 'Falha ao editar endereço';
+
+        $inquilino->nome = $request->get('nome');
+        $inquilino->cpf = $request->get('cpf');
+        $inquilino->email = $request->get('email');
+        $inquilino->telefone = $request->get('telefone');
+        $inquilino->telefone_adicional = $request->get('telefone_adicional');
+        $inquilino->telefone_contato = $request->get('telefone_contato');
+        $inquilino->telefone_contato_adicional = $request->get('telefone_contato_adicional');
+
+
+        if ($inquilino->save()) {
+            return redirect()->to(route('inquilinoListar'));
+        }
+
+        // TODO implemetar rollback de endereço
+        return 'Falha ao editar o inquilino';
     }
 
 
     public function remover($id)
     {
-        return 'Implementar softdelete no banco de dados';
+        $inquilino = Inquilino::find($id) ?? abort('404');
+        $inquilino->delete();
+        return redirect()->to(route('inquilinoListar'));
     }
 }
