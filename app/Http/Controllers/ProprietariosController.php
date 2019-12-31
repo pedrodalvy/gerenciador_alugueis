@@ -32,6 +32,7 @@ class ProprietariosController extends Controller
             return redirect()->to(route('proprietariosListar'));
         }
 
+        EnderecoController::remover($proprietarioEndereco);
         return 'Falha ao cadastrar o proprietario';
     }
 

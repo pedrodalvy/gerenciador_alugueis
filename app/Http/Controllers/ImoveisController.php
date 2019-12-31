@@ -34,6 +34,7 @@ class ImoveisController extends Controller
             return redirect()->to(route('imovelListar'));
         }
 
+        EnderecoController::remover($imovelEndereco);
         return 'Falha ao cadastrar o imóvel';
     }
 

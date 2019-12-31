@@ -32,7 +32,7 @@ class EnderecoController extends Controller
     {
         if (!$request->cep) return false;
 
-        $endereco = Endereco::find($request->endereco_id) ?? abort('404');
+        $endereco = Endereco::findOrFail($request->endereco_id);
 
         $endereco->cep = $request->get('cep');
         $endereco->logradouro = $request->get('logradouro');
@@ -43,5 +43,11 @@ class EnderecoController extends Controller
         $endereco->save();
 
         return true;
+    }
+
+    static function remover($id)
+    {
+        $endereco = Endereco::findOrFail($id);
+        $endereco->delete();
     }
 }

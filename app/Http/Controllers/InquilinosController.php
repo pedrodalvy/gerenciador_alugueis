@@ -32,6 +32,7 @@ class InquilinosController extends Controller
             return redirect()->to(route('inquilinoListar'));
         }
 
+        EnderecoController::remover($inquilinoEndereco);
         return 'Falha ao cadastrar o inquilino';
     }
 
