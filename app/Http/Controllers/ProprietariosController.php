@@ -26,22 +26,9 @@ class ProprietariosController extends Controller
         $proprietarioEndereco = EnderecoController::cadastrar($request);
         if (!$proprietarioEndereco) return 'Falha ao cadastrar endereço';
 
-        $proprietario = new Proprietario();
+        $request['endereco_id'] = $proprietarioEndereco;
 
-        $proprietario->nome = $request->get('nome');
-        $proprietario->cpf = $request->get('cpf');
-        $proprietario->email = $request->get('email');
-        $proprietario->telefone = $request->get('telefone');
-        $proprietario->telefone_adicional = $request->get('telefone_adicional');
-        $proprietario->telefone_contato = $request->get('telefone_contato');
-        $proprietario->telefone_contato_adicional = $request->get('telefone_contato_adicional');
-        $proprietario->agencia = $request->get('agencia');
-        $proprietario->conta = $request->get('conta');
-        $proprietario->operacao = $request->get('operacao');
-        $proprietario->endereco_id = $proprietarioEndereco;
-        $proprietario->save();
-
-        if ($proprietario->id) {
+        if (Proprietario::create($request->all())) {
             return redirect()->to(route('proprietariosListar'));
         }
 
@@ -51,8 +38,8 @@ class ProprietariosController extends Controller
 
     public function formularioEditar($id)
     {
-        $proprietario = Proprietario::find($id) ?? abort('404');
-        $proprietarioEndereco = Endereco::find($proprietario->endereco_id) ?? abort('404');
+        $proprietario = Proprietario::findOrFail($id);
+        $proprietarioEndereco = Endereco::findOrFail($proprietario->endereco_id);
 
         return view('proprietarios.formularioEditar')
             ->with('proprietario', $proprietario)
@@ -61,21 +48,12 @@ class ProprietariosController extends Controller
 
     public function editar(Request $request, $id)
     {
-        $proprietario = Proprietario::find($id) ?? abort('404');
+        $proprietario = Proprietario::findOrFail($id);
 
         $proprietarioEndereco = EnderecoController::editar($request);
         if (!$proprietarioEndereco) return 'Falha ao cadastrar endereço';
 
-        $proprietario->nome = $request->get('nome');
-        $proprietario->cpf = $request->get('cpf');
-        $proprietario->email = $request->get('email');
-        $proprietario->telefone = $request->get('telefone');
-        $proprietario->telefone_adicional = $request->get('telefone_adicional');
-        $proprietario->telefone_contato = $request->get('telefone_contato');
-        $proprietario->telefone_contato_adicional = $request->get('telefone_contato_adicional');
-        $proprietario->agencia = $request->get('agencia');
-        $proprietario->conta = $request->get('conta');
-        $proprietario->operacao = $request->get('operacao');
+        $proprietario->fill($request->all());
 
         if ($proprietario->save()) {
             return redirect()->to(route('proprietariosListar'));
@@ -88,7 +66,7 @@ class ProprietariosController extends Controller
 
     public function remover($id)
     {
-        $proprietario = Proprietario::find($id) ?? abort('404');
+        $proprietario = Proprietario::findOrFail($id);
         $proprietario->delete();
         return redirect()->to(route('proprietariosListar'));
     }
