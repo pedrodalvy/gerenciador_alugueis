@@ -12,32 +12,25 @@ class ImoveisController extends Controller
     {
         $imoveis = Imovel::all();
 
-        return view('imoveis.lista', compact('imoveis'));
+        return view('imoveis.lista')
+            ->with('imoveis', $imoveis);
     }
 
 
     public function formularioCadastrar()
     {
-        return view('imoveis.formularioCadastrar');
+        return view('imoveis.formularioCadastrar')
+            ->with('imovel', new Imovel());
     }
 
     public function cadastrar(Request $request)
     {
-
         $imovelEndereco = EnderecoController::cadastrar($request);
-
         if (!$imovelEndereco) return 'Falha ao cadastrar endereço';
 
-        $imovel = new Imovel();
+        $request['endereco_id'] = $imovelEndereco;
 
-        $imovel->descricao = $request->get('descricao');
-        $imovel->inscricao_imobiliaria = $request->get('inscricao_imobiliaria');
-        $imovel->valor_venda = $request->get('valor_venda');
-        $imovel->valor_aluguel = $request->get('valor_aluguel');
-        $imovel->endereco_id = $imovelEndereco;
-        $imovel->save();
-
-        if ($imovel->id) {
+        if (Imovel::create($request->all())) {
             return redirect()->to(route('imovelListar'));
         }
 
@@ -47,8 +40,8 @@ class ImoveisController extends Controller
 
     public function formularioEditar($id)
     {
-        $imovel = Imovel::find($id) ?? abort('404');
-        $imovelEndereco = Endereco::find($imovel->endereco_id) ?? abort('404');
+        $imovel = Imovel::findOrFail($id);
+        $imovelEndereco = Endereco::findOrFail($imovel->endereco_id);
 
         return view('imoveis.formularioEditar')
             ->with('imovel', $imovel)
@@ -57,16 +50,12 @@ class ImoveisController extends Controller
 
     public function editar(Request $request, $id)
     {
-
-        $imovel = Imovel::find($id) ?? abort('404');
+        $imovel = Imovel::findOrFail($id);
 
         $imovelEndereco = EnderecoController::editar($request);
         if (!$imovelEndereco) return 'Falha ao editar endereço';
 
-        $imovel->descricao = $request->get('descricao');
-        $imovel->inscricao_imobiliaria = $request->get('inscricao_imobiliaria');
-        $imovel->valor_venda = $request->get('valor_venda');
-        $imovel->valor_aluguel = $request->get('valor_aluguel');
+        $imovel->fill($request->all());
 
         if ($imovel->save()) {
             return redirect()->to(route('imovelListar'));
@@ -79,7 +68,7 @@ class ImoveisController extends Controller
 
     public function remover($id)
     {
-        $imovel = Imovel::find($id) ?? abort('404');
+        $imovel = Imovel::findOrFail($id);
         $imovel->delete();
         return redirect()->to(route('imovelListar'));
     }
