@@ -10,7 +10,6 @@
         <tr>
             <th>#</th>
             <th>Descrição</th>
-            <th>Endereço</th>
             <th>Inscrição imobiliária</th>
             <th>Valor para venda</th>
             <th>Valor para aluguel</th>
@@ -22,13 +21,12 @@
             <tr>
                 <td>{{ $imovel->id }}</td>
                 <td>{{ $imovel->descricao }}</td>
-                <td>implemetar endereco</td>
                 <td>{{ $imovel->inscricao_imobiliaria }}</td>
                 <td>{{ $imovel->valor_venda }}</td>
                 <td>{{ $imovel->valor_aluguel }}</td>
                 <td>
                     <a href="{{ route('imovel.edit', $imovel->id) }}">Editar</a> |
-                    <a href="{{ route('imovel.show', $imovel->id) }}">Ver</a>
+                    <a href="{{ route('imovel.show', $imovel->id) }}">Detalhes</a>
                 </td>
             </tr>
         @empty
