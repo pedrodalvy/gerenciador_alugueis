@@ -11,6 +11,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class InquilinosController extends Controller
@@ -44,10 +45,12 @@ class InquilinosController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
+        $request->validate(Inquilino::RULES);
+
         $inquilinoEndereco = EnderecoController::cadastrar($request);
         if (!$inquilinoEndereco) return 'Falha ao cadastrar endereço';
 
@@ -102,6 +105,8 @@ class InquilinosController extends Controller
      */
     public function update(Request $request, Inquilino $inquilino)
     {
+        $request->validate(Inquilino::RULES);
+
         $inquilinoEndereco = EnderecoController::editar($request);
         if (!$inquilinoEndereco) return 'Falha ao editar endereço';
 

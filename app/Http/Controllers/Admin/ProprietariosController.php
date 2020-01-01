@@ -7,15 +7,18 @@ use App\Endereco;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\EnderecoController;
 use App\Proprietario;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class ProprietariosController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return Factory|View
      */
     public function index()
     {
@@ -28,7 +31,7 @@ class ProprietariosController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Factory|View
      */
     public function create()
     {
@@ -41,10 +44,12 @@ class ProprietariosController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
+        $request->validate(Proprietario::RULES);
+
         $proprietarioEndereco = EnderecoController::cadastrar($request);
         if (!$proprietarioEndereco) return 'Falha ao cadastrar endereço';
 
@@ -62,7 +67,7 @@ class ProprietariosController extends Controller
      * Display the specified resource.
      *
      * @param Proprietario $proprietario
-     * @return void
+     * @return Factory|View
      */
     public function show(Proprietario $proprietario)
     {
@@ -79,7 +84,7 @@ class ProprietariosController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Proprietario $proprietario
-     * @return Response
+     * @return Factory|View
      */
     public function edit(Proprietario $proprietario)
     {
@@ -95,10 +100,12 @@ class ProprietariosController extends Controller
      *
      * @param Request $request
      * @param Proprietario $proprietario
-     * @return Response
+     * @return RedirectResponse
      */
     public function update(Request $request, Proprietario $proprietario)
     {
+        $request->validate(Proprietario::RULES);
+
         $proprietarioEndereco = EnderecoController::editar($request);
         if (!$proprietarioEndereco) return 'Falha ao cadastrar endereço';
 

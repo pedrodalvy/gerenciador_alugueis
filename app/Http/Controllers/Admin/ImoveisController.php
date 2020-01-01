@@ -7,14 +7,17 @@ use App\Endereco;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\EnderecoController;
 use App\Imovel;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ImoveisController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Factory|View
      */
     public function index()
     {
@@ -27,7 +30,7 @@ class ImoveisController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Factory|View
      */
     public function create()
     {
@@ -39,18 +42,20 @@ class ImoveisController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
+        $request->validate(Imovel::RULES);
+
         $imovelEndereco = EnderecoController::cadastrar($request);
         if (!$imovelEndereco) return 'Falha ao cadastrar endereço';
 
         $request['endereco_id'] = $imovelEndereco;
 
         if (Imovel::create($request->all())) {
-            return redirect()->to(route('imovelListar'));
+            return redirect()->to(route('imovel.index'));
         }
 
         EnderecoController::remover($imovelEndereco);
@@ -60,8 +65,8 @@ class ImoveisController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param Imovel $imovel
+     * @return Factory|View
      */
     public function show(Imovel $imovel)
     {
@@ -78,7 +83,7 @@ class ImoveisController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Imovel $imovel
-     * @return \Illuminate\Http\Response
+     * @return Factory|View
      */
     public function edit(Imovel $imovel)
     {
@@ -92,13 +97,14 @@ class ImoveisController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param Imovel $imovel
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function update(Request $request, Imovel $imovel)
     {
-        dd($request->browser);
+        $request->validate(Imovel::RULES);
+
         $imovelEndereco = EnderecoController::editar($request);
         if (!$imovelEndereco) return 'Falha ao editar endereço';
 
@@ -116,7 +122,7 @@ class ImoveisController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Imovel $imovel
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      * @throws \Exception
      */
     public function destroy(Imovel $imovel)

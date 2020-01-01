@@ -21,4 +21,14 @@ class Inquilino extends Model
         'telefone_contato_adicional',
         'endereco_id'
     ];
+
+    const RULES = [
+        'nome' => 'required|max:255',
+        'cpf' => 'required|digits:11',
+        'email' => 'required|email',
+        'telefone' => 'required|max:20',
+        'telefone_adicional' => 'required|max:20',
+        'telefone_contato' => 'required|max:20',
+        'telefone_contato_adicional' => 'required|max:20'
+    ];
 }

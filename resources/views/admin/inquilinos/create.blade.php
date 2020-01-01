@@ -5,6 +5,8 @@
     <h3>Cadastrar inquilino</h3>
     <br>
 
+    @include('_form_errors')
+
     <form action="{{ route('inquilinos.store') }}" method="post">
 
         @include('admin.inquilinos._form')

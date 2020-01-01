@@ -4,6 +4,8 @@
 @section('content')
     <h3>Editar inquilino</h3>
 
+    @include('_form_errors')
+
     <form action="{{ route('inquilinos.update', $inquilino->id) }}" method="post">
         {{ method_field('PUT') }}
 

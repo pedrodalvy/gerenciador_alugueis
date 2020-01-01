@@ -9,7 +9,7 @@ class EnderecoController extends Controller
 {
     static function cadastrar(Request $request)
     {
-        if (!$request->cep) return false;
+        $request->validate(Endereco::RULES);
 
         $endereco = new Endereco();
 
@@ -30,7 +30,9 @@ class EnderecoController extends Controller
 
     static function editar(Request $request)
     {
-        if (!$request->cep) return false;
+        $request->validate(Endereco::RULES + [
+                'endereco_id' => 'required|numeric'
+            ]);
 
         $endereco = Endereco::findOrFail($request->endereco_id);
 
