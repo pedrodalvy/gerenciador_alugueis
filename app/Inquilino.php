@@ -24,7 +24,7 @@ class Inquilino extends Model
 
     const RULES = [
         'nome' => 'required|max:255',
-        'cpf' => 'required|digits:11',
+        'cpf' => 'required|cpf',
         'email' => 'required|email',
         'telefone' => 'required|max:20',
         'telefone_adicional' => 'required|max:20',
