@@ -29,7 +29,6 @@ class TestFakerController extends Controller
         return $endereco->id;
     }
 
-
     private function cadastraImovel()
     {
         $faker = \Faker\Factory::create('pt_BR');
