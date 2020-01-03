@@ -17,6 +17,7 @@ class CreateCidadesTable extends Migration
             $table->increments('id')->comment('Deve seguir o codigo IBGE do municipio');
             $table->string('nome');
             $table->string('uf');
+            $table->timestamps();
         });
     }
 
