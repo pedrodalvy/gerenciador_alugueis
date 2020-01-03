@@ -19,4 +19,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('imovel', 'Admin\ImoveisController');
     Route::resource('proprietarios', 'Admin\ProprietariosController');
     Route::resource('inquilinos', 'Admin\InquilinosController');
+
+    Route::get('imovel/gerar-imoveis/{id}', 'Test\ImoveisCreateController@geradorImoveis');
 });
