@@ -9,12 +9,11 @@ use Illuminate\Http\Request;
 
 class ImoveisCreateController extends Controller
 {
-    public function cadastraEndereco()
+    public function cadastraImovel()
     {
         $faker = \Faker\Factory::create('pt_BR');
 
         $endereco = new Endereco();
-
         $endereco->cep = $faker->postcode;
         $endereco->logradouro = $faker->streetName;
         $endereco->numero = $faker->numberBetween(10,50000);
@@ -23,25 +22,13 @@ class ImoveisCreateController extends Controller
         $endereco->municipio_id = 5002704;
         $endereco->save();
 
-        return $endereco->id;
-    }
-
-    public function cadastraImovel()
-    {
-        $faker = \Faker\Factory::create('pt_BR');
-
-        $endereco_id = $this->cadastraEndereco();
-
         $imovel = new Imovel();
-
-        $imovel->endereco_id = $endereco_id;
+        $imovel->endereco_id = $endereco->id;
         $imovel->descricao = $faker->sentence;
         $imovel->inscricao_imobiliaria = rand(1000000000,9999999999);
         $imovel->valor_venda = $faker->numberBetween(100000,1000000);
         $imovel->valor_aluguel = $faker->numberBetween(800,2000);
         $imovel->save();
-
-        return $imovel->id;
     }
 
     public function geradorImoveis(int $quantidade)
