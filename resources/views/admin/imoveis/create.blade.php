@@ -4,12 +4,14 @@
 @section('content')
     <h3>Cadastrar Imóvel</h3>
 
-    @include('_form_errors')
+    @include('form._form_errors')
 
-    <form action="{{ route('imovel.store') }}" method="post">
+    {{ Form::open(['route' => 'imovel.store']) }}
 
         @include('admin.imoveis._form')
 
         <button type="submit" class="btn btn-outline-secondary">Salvar</button>
-    </form>
+
+    {{ Form::close() }}
+
 @endsection

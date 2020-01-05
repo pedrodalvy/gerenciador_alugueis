@@ -21,7 +21,7 @@ class ImoveisController extends Controller
      */
     public function index()
     {
-        $imoveis = Imovel::all();
+        $imoveis = Imovel::paginate(5);
 
         return view('admin.imoveis.index')
             ->with('imoveis', $imoveis);

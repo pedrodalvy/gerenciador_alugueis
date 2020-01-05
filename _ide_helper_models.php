@@ -73,6 +73,8 @@ namespace App{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read mixed $valor_aluguel_formatted
+ * @property-read mixed $valor_venda_formatted
  * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Imovel newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Imovel newQuery()

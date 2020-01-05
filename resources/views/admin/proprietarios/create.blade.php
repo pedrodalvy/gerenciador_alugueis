@@ -5,7 +5,7 @@
     <h3>Cadastrar proprietário</h3>
     <br>
 
-    @include('_form_errors')
+    @include('form._form_errors')
 
     <form action="{{ route('proprietarios.store') }}" method="post">
 

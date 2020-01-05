@@ -7,18 +7,23 @@ use App\Http\Controllers\Controller;
 use App\Imovel;
 use App\Inquilino;
 use App\Proprietario;
+use Faker\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class TestFakerController extends Controller
 {
 
+    /**
+     * @return int|mixed
+     */
     private function cadastrarEndereco()
     {
-        $faker = \Faker\Factory::create('pt_BR');
+        $faker = Factory::create('pt_BR');
 
         $endereco = new Endereco();
 
-        $endereco->cep = $faker->postcode;
+        $endereco->cep = preg_replace('/\D/','',$faker->postcode);
         $endereco->logradouro = $faker->streetName;
         $endereco->numero = $faker->numberBetween(10,50000);
         $endereco->complemento = rand(1, 10) % 2 == 0 ? $faker->word : null;
@@ -29,9 +34,12 @@ class TestFakerController extends Controller
         return $endereco->id;
     }
 
+    /**
+     * @return int|mixed
+     */
     private function cadastraImovel()
     {
-        $faker = \Faker\Factory::create('pt_BR');
+        $faker = Factory::create('pt_BR');
 
         $endereco_id = $this->cadastrarEndereco();
 
@@ -47,6 +55,10 @@ class TestFakerController extends Controller
         return $imovel->id;
     }
 
+    /**
+     * @param int $quantidade
+     * @return RedirectResponse
+     */
     public function geradorImoveis(int $quantidade)
     {
         for ($i=0; $i < $quantidade; $i++) { 
@@ -56,9 +68,12 @@ class TestFakerController extends Controller
         return redirect()->to(route('imovel.index'));
     }
 
+    /**
+     * @return int|mixed
+     */
     private function cadastraPropietario()
     {
-        $faker = \Faker\Factory::create('pt_BR');
+        $faker = Factory::create('pt_BR');
 
         $endereco_id = $this->cadastrarEndereco();
 
@@ -67,10 +82,10 @@ class TestFakerController extends Controller
         $proprietario->nome = $faker->name();
         $proprietario->cpf = preg_replace("/\D/", "", $faker->cpf);
         $proprietario->email = $faker->email;
-        $proprietario->telefone = $faker->phoneNumber;
-        $proprietario->telefone_adicional = $faker->phoneNumber;
-        $proprietario->telefone_contato = $faker->phoneNumber;
-        $proprietario->telefone_contato_adicional = $faker->phoneNumber;
+        $proprietario->telefone = preg_replace("/\D/", "", $faker->phoneNumber);
+        $proprietario->telefone_adicional = preg_replace("/\D/", "", $faker->phoneNumber);
+        $proprietario->telefone_contato = preg_replace("/\D/", "", $faker->phoneNumber);
+        $proprietario->telefone_contato_adicional = preg_replace("/\D/", "", $faker->phoneNumber);
         $proprietario->agencia = $faker->numberBetween(0,999);
         $proprietario->conta = $faker->numberBetween(0,99999);
         $proprietario->operacao = $faker->numberBetween(0,20);
@@ -80,6 +95,10 @@ class TestFakerController extends Controller
         return $proprietario->id;
     }
 
+    /**
+     * @param int $quantidade
+     * @return RedirectResponse
+     */
     public function geradorPropietarios(int $quantidade)
     {
         for ($i=0; $i < $quantidade; $i++) { 
@@ -89,9 +108,12 @@ class TestFakerController extends Controller
         return redirect()->to(route('proprietarios.index'));
     }
 
+    /**
+     * @return int|mixed
+     */
     private function cadastraInquilino()
     {
-        $faker = \Faker\Factory::create('pt_BR');
+        $faker = Factory::create('pt_BR');
 
         $endereco_id = $this->cadastrarEndereco();
 
@@ -100,16 +122,20 @@ class TestFakerController extends Controller
         $inquilino->nome = $faker->name();
         $inquilino->cpf = preg_replace("/\D/", "", $faker->cpf);
         $inquilino->email = $faker->email;
-        $inquilino->telefone = $faker->phoneNumber;
-        $inquilino->telefone_adicional = $faker->phoneNumber;
-        $inquilino->telefone_contato = $faker->phoneNumber;
-        $inquilino->telefone_contato_adicional = $faker->phoneNumber;
+        $inquilino->telefone = preg_replace("/\D/", "", $faker->phoneNumber);
+        $inquilino->telefone_adicional = preg_replace("/\D/", "", $faker->phoneNumber);
+        $inquilino->telefone_contato = preg_replace("/\D/", "", $faker->phoneNumber);
+        $inquilino->telefone_contato_adicional = preg_replace("/\D/", "", $faker->phoneNumber);
         $inquilino->endereco_id = $endereco_id;
         $inquilino->save();
         
         return $inquilino->id;
     }
 
+    /**
+     * @param int $quantidade
+     * @return RedirectResponse
+     */
     public function geradorInquilinos(int $quantidade)
     {
         for ($i=0; $i < $quantidade; $i++) { 

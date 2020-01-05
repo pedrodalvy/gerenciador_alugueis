@@ -4,7 +4,7 @@
 @section('content')
     <h3>Editar proprietário</h3>
 
-    @include('_form_errors')
+    @include('form._form_errors')
 
     <form action="{{ route('proprietarios.update', $proprietario->id) }}" method="post">
         {{ method_field('PUT') }}

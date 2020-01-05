@@ -21,11 +21,11 @@
         </tr>
         <tr>
             <th scope="row">Valor de Venda</th>
-            <td>{{ $imovel->valor_venda }}</td>
+            <td>R$ {{ $imovel->valor_venda_formatted }}</td>
         </tr>
         <tr>
             <th scope="row">Valor do aluguel</th>
-            <td>{{ $imovel->valor_aluguel }}</td>
+            <td>R$ {{ $imovel->valor_aluguel_formatted }}</td>
         </tr>
         <tr>
             <th scope="row" colspan="2">Endereço</th>

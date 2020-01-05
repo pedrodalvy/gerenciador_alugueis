@@ -4,7 +4,15 @@
 @section('content')
     <h3>Listagem de Imóveis</h3>
     <br>
-
+    <style>
+        td {
+            max-width: 400px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            direction: ltr;
+        }
+    </style>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -22,8 +30,8 @@
                 <td>{{ $imovel->id }}</td>
                 <td>{{ $imovel->descricao }}</td>
                 <td>{{ $imovel->inscricao_imobiliaria }}</td>
-                <td>{{ $imovel->valor_venda }}</td>
-                <td>{{ $imovel->valor_aluguel }}</td>
+                <td>R$ {{ $imovel->valor_venda_formatted }}</td>
+                <td>R$ {{ $imovel->valor_aluguel_formatted }}</td>
                 <td>
                     <a href="{{ route('imovel.edit', $imovel->id) }}">Editar</a> |
                     <a href="{{ route('imovel.show', $imovel->id) }}">Detalhes</a>
@@ -31,10 +39,12 @@
             </tr>
         @empty
             <tr>
-                <td colspan="6">Nenhum imóvel cadastrado</td>
+                <td colspan="6" class="text-center">Nenhum imóvel cadastrado</td>
             </tr>
         @endforelse
         </tbody>
     </table>
+    {{ $imoveis->links() }}
+    <br>
     <a class="btn btn-outline-secondary" href="{{ route('imovel.create') }}">Novo Imóvel</a>
 @endsection

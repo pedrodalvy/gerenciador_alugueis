@@ -1,65 +1,54 @@
-@csrf
+@component('form._form_group', ['field' => 'descricao'])
+    {{ Form::label('descricao', 'Descrição', ['class' => 'control-label']) }}
+    {{ Form::text('descricao', null, ['class' => 'form-control']) }}
+@endcomponent
 
-<div class="form-group">
-    <label for="descricao">Descrição</label>
-    <input class="form-control" type="text" name="descricao"
-           value="{{ old('descricao', $imovel->descricao) }}">
-</div>
+@component('form._form_group', ['field' => 'inscricao_imobiliaria'])
+    {{ Form::label('inscricao_imobiliaria', 'Inscrição imobiliária', ['class' => 'control-label']) }}
+    {{ Form::text('inscricao_imobiliaria', null, ['class' => 'form-control']) }}
+@endcomponent
 
-<div class="form-group">
-    <label for="inscricao_imobiliaria">Inscrição imobiliária</label>
-    <input class="form-control" type="text" name="inscricao_imobiliaria"
-           value="{{ old('inscricao_imobiliaria', $imovel->inscricao_imobiliaria) }}">
-</div>
+@component('form._form_group', ['field' => 'valor_venda'])
+    {{ Form::label('valor_venda', 'Valor para venda', ['class' => 'control-label']) }}
+    {{ Form::text('valor_venda', null, ['class' => 'form-control']) }}
+@endcomponent
 
-<div class="form-group">
-    <label for="valor_venda">Valor para venda</label>
-    <input class="form-control" type="text" name="valor_venda"
-           value="{{ old('valor_venda', $imovel->valor_venda) }}">
-</div>
+@component('form._form_group', ['field' => 'valor_aluguel'])
+    {{ Form::label('valor_aluguel', 'Valor para aluguel', ['class' => 'control-label']) }}
+    {{ Form::text('valor_aluguel', null, ['class' => 'form-control']) }}
+@endcomponent
 
-<div class="form-group">
-    <label for="valor_aluguel">Valor para aluguel</label>
-    <input class="form-control" type="text" name="valor_aluguel"
-           value="{{ old('valor_aluguel', $imovel->valor_aluguel) }}">
-</div>
-
-
+<br>
 <p>Endereço</p>
+{{ Form::hidden('endereco_id', $imovel->endereco_id) }}
 
-<input class="form-control" type="hidden" name="endereco_id" value="{{ old('endereco_id', $imovel->endereco_id) }}">
+@component('form._form_group', ['field' => 'descricao'])
+    {{ Form::label('cep', 'CEP', ['class' => 'control-label']) }}
+    {{ Form::text('cep', null, ['class' => 'form-control']) }}
+@endcomponent
 
-<div class="form-group">
-    <label for="cep">CEP</label>
-    <input class="form-control" type="text" name="cep"  value="{{ old('cep', $imovelEndereco->cep) }}">
-</div>
+@component('form._form_group', ['field' => 'descricao'])
+    {{ Form::label('logradouro', 'Logradouro', ['class' => 'control-label']) }}
+    {{ Form::text('logradouro', null, ['class' => 'form-control']) }}
+@endcomponent
 
-<div class="form-group">
-    <label for="logradouro">Logradouro</label>
-    <input class="form-control" type="text" name="logradouro"
-           value="{{ old('logradouro', $imovelEndereco->logradouro) }}">
-</div>
+@component('form._form_group', ['field' => 'descricao'])
+    {{ Form::label('numero', 'Número', ['class' => 'control-label']) }}
+    {{ Form::text('numero', null, ['class' => 'form-control']) }}
+@endcomponent
 
-<div class="form-group">
-    <label for="numero">Número</label>
-    <input class="form-control" type="text" name="numero"
-           value="{{ old('numero', $imovelEndereco->numero) }}">
-</div>
+@component('form._form_group', ['field' => 'descricao'])
+    {{ Form::label('complemento', 'Complemento', ['class' => 'control-label']) }}
+    {{ Form::text('complemento', null, ['class' => 'form-control']) }}
+@endcomponent
 
-<div class="form-group">
-    <label for="complemento">Complemento</label>
-    <input class="form-control" type="text" name="complemento"
-           value="{{ old('complemento', $imovelEndereco->complemento) }}">
-</div>
+@component('form._form_group', ['field' => 'descricao'])
+    {{ Form::label('bairro', 'Bairro', ['class' => 'control-label']) }}
+    {{ Form::text('bairro', null, ['class' => 'form-control']) }}
+@endcomponent
 
-<div class="form-group">
-    <label for="bairro">Bairro</label>
-    <input class="form-control" type="text" name="bairro"
-           value="{{ old('bairro', $imovelEndereco->bairro) }}">
-</div>
+@component('form._form_group', ['field' => 'descricao'])
+    {{ Form::label('municipio_id', 'Município', ['class' => 'control-label']) }}
+    {{ Form::text('municipio_id', null, ['class' => 'form-control']) }}
+@endcomponent
 
-<div class="form-group">
-    <label for="municipio_id">Município</label>
-    <input class="form-control" type="text" name="municipio_id"
-           value="{{ old('municipio_id', $imovelEndereco->municipio_id) }}">
-</div>
