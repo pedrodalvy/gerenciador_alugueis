@@ -94,10 +94,7 @@
     <a class="btn btn-outline-danger" href="{{ route('proprietarios.destroy', $proprietario->id) }}"
        onclick="event.preventDefault(); if(confirm('Deseja excluir este cadastro?')) {document.getElementById('form-delete').submit();}">Remover</a>
 
-    <form method="post" id="form-delete" style="display: none"
-          action="{{ route('proprietarios.destroy', $proprietario->id ) }}">
-        {{ method_field('DELETE') }}
-        {{ csrf_field() }}
-    </form>
+    {!! Form::open(['route' => ['proprietarios.destroy', $proprietario->id], 'method' => 'DELETE', 'id' => 'form-delete']) !!}
+    {!! Form::close() !!}
 
 @endsection

@@ -90,9 +90,10 @@ class ProprietariosController extends Controller
     {
         $proprietarioEndereco = Endereco::findOrFail($proprietario->endereco_id);
 
+        $proprietario = array_merge($proprietario->toArray(), $proprietarioEndereco->toArray());
+        
         return view('admin.proprietarios.edit')
-            ->with('proprietario', $proprietario)
-            ->with('proprietarioEndereco', $proprietarioEndereco);
+            ->with('proprietario', $proprietario);
     }
 
     /**

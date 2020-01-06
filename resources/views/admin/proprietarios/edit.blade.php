@@ -6,12 +6,12 @@
 
     @include('form._form_errors')
 
-    <form action="{{ route('proprietarios.update', $proprietario->id) }}" method="post">
-        {{ method_field('PUT') }}
+    {!! Form::model($proprietario, ['route' => ['proprietarios.update', $proprietario['id']], 'method' => 'PUT']) !!}
 
         @include('admin.proprietarios._form')
 
         <a class="btn btn-outline-secondary" href="{{ route('proprietarios.index') }}">Voltar</a>
         <button type="submit" class="btn btn-outline-primary">Gravar</button>
-    </form>
+        
+   {!! Form::close() !!}
 @endsection

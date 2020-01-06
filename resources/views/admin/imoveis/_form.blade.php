@@ -20,7 +20,7 @@
 
 <br>
 <p>Endereço</p>
-{{ Form::hidden('endereco_id', $imovel->endereco_id) }}
+{{ Form::hidden('endereco_id', $imovel['endereco_id']) }}
 
 @component('form._form_group', ['field' => 'descricao'])
     {{ Form::label('cep', 'CEP', ['class' => 'control-label']) }}

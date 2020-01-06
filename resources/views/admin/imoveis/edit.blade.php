@@ -6,12 +6,11 @@
 
     @include('form._form_errors')
 
-    <form action="{{ route('imovel.update', $imovel->id) }}" method="post">
-        {{ method_field('PUT') }}
+    {!! Form::model($imovel, ['route' => ['imovel.update', $imovel['id']],'method' => 'PUT']) !!}
 
         @include('admin.imoveis._form')
 
         <a class="btn btn-outline-secondary" href="{{ route('imovel.index') }}">Voltar</a>
         <button type="submit" class="btn btn-outline-primary">Gravar</button>
-    </form>
+    {!! Form::close() !!}
 @endsection

@@ -14,6 +14,7 @@ class Imovel extends Model
         'valor_venda' => 'required|numeric',
         'valor_aluguel' => 'required|numeric'
     ];
+    
     protected $table = 'imoveis';
     protected $fillable = [
         'descricao',
@@ -21,7 +22,7 @@ class Imovel extends Model
         'valor_venda',
         'valor_aluguel',
         'endereco_id'
-    ];
+    ];    
 
     public function getValorVendaFormattedAttribute()
     {

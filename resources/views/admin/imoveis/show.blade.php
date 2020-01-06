@@ -61,9 +61,7 @@
     <a class="btn btn-outline-danger" href="{{ route('imovel.destroy', $imovel->id) }}"
        onclick="event.preventDefault(); if(confirm('Deseja excluir este cadastro?')) {document.getElementById('form-delete').submit();}">Remover</a>
 
-    <form method="post" id="form-delete" style="display: none" action="{{ route('imovel.destroy', $imovel->id ) }}">
-        {{ method_field('DELETE') }}
-        {{ csrf_field() }}
-    </form>
+    {!! Form::open(['route' => ['imovel.destroy', $imovel->id], 'method' => 'DELETE', 'id' => 'form-delete']) !!}
+    {!! Form::close() !!}
 
 @endsection

@@ -89,9 +89,10 @@ class ImoveisController extends Controller
     {
         $imovelEndereco = Endereco::findOrFail($imovel->endereco_id);
 
+        $imovel = (array_merge($imovel->toArray(), $imovelEndereco->toArray()));
+
         return view('admin.imoveis.edit')
-            ->with('imovel', $imovel)
-            ->with('imovelEndereco', $imovelEndereco);
+            ->with('imovel', $imovel);
     }
 
     /**

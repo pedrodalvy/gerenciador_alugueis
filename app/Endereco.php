@@ -16,4 +16,5 @@ class Endereco extends Model
         'bairro' => 'required|max:255',
         'municipio_id' => 'required|numeric'
     ];
+
 }
