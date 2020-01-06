@@ -37,4 +37,24 @@ class Proprietario extends Model
         'conta' => 'nullable',
         'operacao' => 'nullable'
     ];
+
+    public function getCpfFormattedAttribute(){
+        $document = $this->cpf;
+        if(!empty($document) and strlen($document) == 11){
+                $document = preg_replace('/(\d{3})(\d{3})(\d{3})(\d{2})/','$1.$2.$3-$4',$document);
+        }
+        return $document;
+    }
+
+    public function getTelefoneFormattedAttribute(){
+        $telefone = $this->telefone;
+        if(!empty($telefone)){
+            if (strlen($telefone) == 10) {
+                $telefone = preg_replace('/(\d{2})(\d{4})(\d{4})/','($1) $2-$3',$telefone);
+            } elseif (strlen($telefone) == 11) {
+                $telefone = preg_replace('/(\d{2})(\d{1})(\d{4})(\d{4})/','($1) $2 $3-$4',$telefone);
+            }
+        }
+        return $telefone;
+    }
 }

@@ -22,9 +22,9 @@
             <tr>
                 <td>{{ $proprietario->id }}</td>
                 <td>{{ $proprietario->nome }}</td>
-                <td>{{ $proprietario->cpf }}</td>
+                <td>{{ $proprietario->cpf_formatted }}</td>
                 <td>{{ $proprietario->email }}</td>
-                <td>{{ $proprietario->telefone }}</td>
+                <td>{{ $proprietario->telefone_formatted }}</td>
                 <td>
                     <a href="{{ route('proprietarios.edit', $proprietario->id) }}">Editar</a> |
                     <a href="{{ route('proprietarios.show', $proprietario->id) }}">Detalhes</a>
