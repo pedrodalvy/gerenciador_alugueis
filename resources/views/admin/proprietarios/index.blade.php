@@ -37,6 +37,7 @@
         @endforelse
         </tbody>
     </table>
+    {{ $proprietarios->links() }}
     <br><br>
 
     <a class="btn btn-outline-secondary" href="{{ route('proprietarios.create') }}">Novo Proprietário</a>

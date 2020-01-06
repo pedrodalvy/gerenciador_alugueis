@@ -22,7 +22,7 @@ class ProprietariosController extends Controller
      */
     public function index()
     {
-        $proprietarios = Proprietario::all();
+        $proprietarios = Proprietario::paginate();
 
         return view('admin.proprietarios.index')
             ->with('proprietarios', $proprietarios);
