@@ -6,7 +6,7 @@
     <h3>Lista de proprietários</h3>
     <br>
 
-    <table class="table table-striped">
+    <table class="table table-striped table-proprietarios">
         <thead>
         <tr>
             <th>#</th>

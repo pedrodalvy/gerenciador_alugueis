@@ -4,16 +4,8 @@
 @section('content')
     <h3>Listagem de Imóveis</h3>
     <br>
-    <style>
-        td {
-            max-width: 400px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            direction: ltr;
-        }
-    </style>
-    <table class="table table-striped">
+
+    <table class="table table-striped table-imoveis">
         <thead>
         <tr>
             <th>#</th>
@@ -28,7 +20,7 @@
         @forelse($imoveis as $imovel)
             <tr>
                 <td>{{ $imovel->id }}</td>
-                <td>{{ $imovel->descricao }}</td>
+                <td title="{{ $imovel->descricao }}">{{ $imovel->descricao }}</td>
                 <td>{{ $imovel->inscricao_imobiliaria }}</td>
                 <td>R$ {{ $imovel->valor_venda_formatted }}</td>
                 <td>R$ {{ $imovel->valor_aluguel_formatted }}</td>

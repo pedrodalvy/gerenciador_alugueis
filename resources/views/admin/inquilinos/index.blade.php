@@ -6,7 +6,7 @@
     <h3>Lista de inquilinos</h3>
     <br>
 
-    <table class="table table-striped">
+    <table class="table table-striped table-inquilinos">
         <thead>
         <tr>
             <th>#</th>
