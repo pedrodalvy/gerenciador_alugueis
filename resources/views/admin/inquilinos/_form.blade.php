@@ -1,67 +1,70 @@
-@csrf
+@component('form._form_group', ['field' => 'nome'])
+    {!! Form::label('nome', 'Nome', ['class' => 'control-label']) !!}
+    {!! Form::text('nome', null, ['class' => 'form-control']) !!}
+@endcomponent
 
-<div class="form-group">
-    <label for="nome">Nome</label>
-    <input class="form-control" type="text" name="nome" value="{{ old('nome',$inquilino->nome) }}">
-</div>
-<div class="form-group">
-    <label for="cpf">CPF</label>
-    <input class="form-control" type="text" name="cpf" value="{{ old('cpf',$inquilino->cpf) }}">
-</div>
-<div class="form-group">
-    <label for="email">E-mail</label>
-    <input class="form-control" type="text" name="email" value="{{ old('email',$inquilino->email) }}">
-</div>
-<div class="form-group">
-    <label for="telefone">Telefone Principal</label>
-    <input class="form-control" type="text" name="telefone" value="{{ old('telefone',$inquilino->telefone) }}">
-</div>
-<div class="form-group">
-    <label for="telefone_adicional">Telefone Adicional</label>
-    <input class="form-control" type="text" name="telefone_adicional"
-           value="{{ old('telefone_adicional',$inquilino->telefone_adicional) }}">
-</div>
-<div class="form-group">
-    <label for="telefone_contato">Telefone para Contato</label>
-    <input class="form-control" type="text" name="telefone_contato"
-           value="{{ old('telefone_contato',$inquilino->telefone_contato) }}">
-</div>
-<div class="form-group">
-    <label for="telefone_contato_adicional">Telefone para Contato adicional</label>
-    <input class="form-control" type="text" name="telefone_contato_adicional"
-           value="{{ old('telefone_contato_adicional',$inquilino->telefone_contato_adicional) }}">
-</div>
+@component('form._form_group', ['field' => 'cpf'])
+    {!! Form::label('cpf', 'CPF', ['class' => 'control-label']) !!}
+    {!! Form::text('cpf', null, ['class' => 'form-control']) !!}
+@endcomponent
+
+@component('form._form_group', ['field' => 'email'])
+    {!! Form::label('email', 'E-mail', ['class' => 'control-label']) !!}
+    {!! Form::email('email', null, ['class' => 'form-control']) !!}
+@endcomponent
+
+@component('form._form_group', ['field' => 'telefone'])
+    {!! Form::label('telefone', 'Telefone Principal', ['class' => 'control-label']) !!}
+    {!! Form::text('telefone', null, ['class' => 'form-control']) !!}
+@endcomponent
+
+@component('form._form_group', ['field' => 'telefone_adicional'])
+    {!! Form::label('telefone_adicional', 'Telefone Adicional', ['class' => 'control-label']) !!}
+    {!! Form::text('telefone_adicional', null, ['class' => 'form-control']) !!}
+@endcomponent
+
+@component('form._form_group', ['field' => 'telefone_contato'])
+    {!! Form::label('telefone_contato', 'Telefone para Contato', ['class' => 'control-label']) !!}
+    {!! Form::text('telefone_contato', null, ['class' => 'form-control']) !!}
+@endcomponent
+
+@component('form._form_group', ['field' => 'telefone_contato_adicional'])
+    {!! Form::label('telefone_contato_adicional', 'Telefone para Contato adicional', ['class' => 'control-label']) !!}
+    {!! Form::text('telefone_contato_adicional', null, ['class' => 'form-control']) !!}
+@endcomponent
 <br><br>
 
 
 <p>Endereço</p>
 
-<input class="form-control" type="hidden" name="endereco_id" value="{{ $inquilino->endereco_id }}">
+{!! Form::hidden('endereco_id', $inquilino['endereco_id']) !!}
 
-<div class="form-group">
-    <label for="cep">CEP</label>
-    <input class="form-control" type="text" name="cep" value="{{ old('cep',$inquilinoEndereco->cep) }}">
-</div>
-<div class="form-group">
-    <label for="logradouro">Logradouro</label>
-    <input class="form-control" type="text" name="logradouro"
-           value="{{ old('logradouro',$inquilinoEndereco->logradouro) }}">
-</div>
-<div class="form-group">
-    <label for="numero">Número</label>
-    <input class="form-control" type="text" name="numero" value="{{ old('numero',$inquilinoEndereco->numero) }}">
-</div>
-<div class="form-group">
-    <label for="complemento">Complemento</label>
-    <input class="form-control" type="text" name="complemento"
-           value="{{ old('complemento',$inquilinoEndereco->complemento) }}">
-</div>
-<div class="form-group">
-    <label for="bairro">Bairro</label>
-    <input class="form-control" type="text" name="bairro" value="{{ old('bairro',$inquilinoEndereco->bairro) }}">
-</div>
-<div class="form-group">
-    <label for="municipio_id">Município</label>
-    <input class="form-control" type="text" name="municipio_id"
-           value="{{ old('municipio_id',$inquilinoEndereco->municipio_id) }}">
-</div>
+@component('form._form_group', ['field' => 'cep'])
+    {!! Form::label('cep', 'CEP', ['class' => 'control-label']) !!}
+    {!! Form::text('cep', null, ['class' => 'form-control']) !!}
+@endcomponent
+
+@component('form._form_group', ['field' => 'logradouro'])
+    {!! Form::label('logradouro', 'Logradouro', ['class' => 'control-label']) !!}
+    {!! Form::text('logradouro', null, ['class' => 'form-control']) !!}
+@endcomponent
+
+@component('form._form_group', ['field' => 'numero'])
+    {!! Form::label('numero', 'Número', ['class' => 'control-label']) !!}
+    {!! Form::text('numero', null, ['class' => 'form-control']) !!}
+@endcomponent
+
+@component('form._form_group', ['field' => 'complemento'])
+    {!! Form::label('complemento', 'Complemento', ['class' => 'control-label']) !!}
+    {!! Form::text('complemento', null, ['class' => 'form-control']) !!}
+@endcomponent
+
+@component('form._form_group', ['field' => 'bairro'])
+    {!! Form::label('bairro', 'Bairro', ['class' => 'control-label']) !!}
+    {!! Form::text('bairro', null, ['class' => 'form-control']) !!}
+@endcomponent
+
+@component('form._form_group', ['field' => 'municipio_id'])
+    {!! Form::label('municipio_id', 'Município', ['class' => 'control-label']) !!}
+    {!! Form::text('municipio_id', null, ['class' => 'form-control']) !!}
+@endcomponent

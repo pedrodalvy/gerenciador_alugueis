@@ -7,10 +7,11 @@
 
     @include('form._form_errors')
 
-    <form action="{{ route('inquilinos.store') }}" method="post">
+    {!! Form::open(['route' => 'inquilinos.store', 'method' => 'POST']) !!}
 
         @include('admin.inquilinos._form')
 
         <button type="submit" class="btn btn-outline-secondary">Salvar</button>
-    </form>
+        
+    {!! Form::close() !!}
 @endsection

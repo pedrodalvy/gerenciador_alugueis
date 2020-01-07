@@ -23,7 +23,7 @@ class InquilinosController extends Controller
      */
     public function index()
     {
-        $inquilinos = Inquilino::all();
+        $inquilinos = Inquilino::paginate();
 
         return view('admin.inquilinos.index')
             ->with('inquilinos', $inquilinos);
@@ -91,9 +91,10 @@ class InquilinosController extends Controller
     {
         $inquilinoEndereco = Endereco::findOrFail($inquilino->endereco_id);
 
+        $inquilino = array_merge($inquilino->toArray(), $inquilinoEndereco->toArray());
+
         return view('admin.inquilinos.edit')
-            ->with('inquilino', $inquilino)
-            ->with('inquilinoEndereco', $inquilinoEndereco);
+            ->with('inquilino', $inquilino);
     }
 
     /**
