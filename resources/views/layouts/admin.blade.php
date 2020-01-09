@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
     
