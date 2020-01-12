@@ -42,6 +42,7 @@ body {
     padding: 0px 10px;
 }
 
+.table-pessoas td,
 .table-imoveis td,
 .table-inquilinos td,
 .table-proprietarios td {

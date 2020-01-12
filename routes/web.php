@@ -19,8 +19,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('imovel', 'Admin\ImoveisController');
     Route::resource('proprietarios', 'Admin\ProprietariosController');
     Route::resource('inquilinos', 'Admin\InquilinosController');
+    Route::resource('pessoas', 'Admin\PessoasController');
 
-    Route::get('imovel/gerar/{id}', 'Test\TestFakerController@geradorImoveis');
-    Route::get('proprietarios/gerar/{id}', 'Test\TestFakerController@geradorPropietarios');
-    Route::get('inquilinos/gerar/{id}', 'Test\TestFakerController@geradorInquilinos');
+//    Route::get('imovel/gerar/{id}', 'Test\TestFakerController@geradorImoveis');
+//    Route::get('proprietarios/gerar/{id}', 'Test\TestFakerController@geradorPropietarios');
+//    Route::get('inquilinos/gerar/{id}', 'Test\TestFakerController@geradorInquilinos');
 });
