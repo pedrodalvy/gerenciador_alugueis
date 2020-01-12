@@ -25,8 +25,8 @@ class PessoaRequest extends FormRequest
     public function rules()
     {
         $estadoCivil = implode(',', array_keys(Pessoa::ESTADO_CIVIL));
-
-        return [
+        $endereco = (new EnderecoRequest())->rules();
+        return array_merge([
             'nome' => 'required|max:255',
             'email' => 'nullable|email',
             'data_nasc' => 'nullable|date',
@@ -38,6 +38,17 @@ class PessoaRequest extends FormRequest
             'telefone' => 'nullable|max:20',
             'telefone_sec' => 'nullable|max:20',
             'endereco_id' => 'nullable|integer',
-        ];
+        ], $endereco);
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        $endereco = (new EnderecoRequest())->messages();
+        return array_merge([],$endereco);
     }
 }

@@ -49,3 +49,5 @@
     {!! Form::label('estado_civil', 'Estado Civil', ['class' => 'control-label']) !!}
     {!! Form::select('estado_civil', $estadoCivil, null, ['class' => 'form-control']) !!}
 @endcomponent
+
+{{--{!! Form::hidden('usar_endereco', 'sim') !!}--}}

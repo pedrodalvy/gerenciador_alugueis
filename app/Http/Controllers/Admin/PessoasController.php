@@ -6,10 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PessoaRequest;
 use App\Models\Pessoa;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
+/**
+ * Class PessoasController
+ * @package App\Http\Controllers\Admin
+ */
 class PessoasController extends Controller
 {
     /**
@@ -46,7 +51,16 @@ class PessoasController extends Controller
     {
         $data = $request->only(array_keys($request->rules()));
 
-        Pessoa::create($data);
+//        Pessoa::create($data);
+
+        /** @var \Illuminate\Support\Collection $pessoa */
+        $pessoa = Pessoa::make($data);
+
+        if($pessoa->usar_endereco == 'sim') {
+            $pessoa->endereco->create($request);
+        }
+        dd((new PessoaRequest())->rules($request));
+        $pessoa->save();
 
         return redirect()->route('pessoas.index')
             ->with('message', 'Pessoa cadastrada com sucesso');
