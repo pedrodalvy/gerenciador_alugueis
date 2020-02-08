@@ -43,7 +43,7 @@
 
         <div class="list-group list-group-flush">
             <a class="list-group-item list-group-item-action waves-effect" id="navHome"
-                href="#"> Página inicial
+                href="{{ route('admin.home') }}"> Página inicial
             </a>
 
             <a class="list-group-item list-group-item-action waves-effect" id="navImovel"
@@ -58,6 +58,9 @@
                href="{{ route('inquilinos.index') }}"> Inquilinos
             </a>
 
+            <a class="list-group-item list-group-item-action waves-effect" id="navPessoas"
+               href="{{ route('pessoas.index') }}"> Pessoas
+            </a>
             <hr>
         </div>
 

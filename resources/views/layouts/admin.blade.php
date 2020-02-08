@@ -26,7 +26,7 @@
 <!--Main Navigation-->
 
 <!--Main layout-->
-<main class="pt-5 mx-lg-5" style="min-height: 91.25vh">
+<main class="pt-5 mx-lg-5">
     <div class="container-fluid mt-5">
         <div class="card">
             <div class="card-body">

@@ -6,6 +6,8 @@
         $('#navProprietarios').addClass('active')
     } else if (window.location.href.includes('inquilinos')) {
         $('#navInquilinos').addClass('active')
+    } else if (window.location.href.includes('pessoas')) {
+        $('#navPessoas').addClass('active')
     } else {
         $('#navHome').addClass('active')
     }

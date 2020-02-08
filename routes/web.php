@@ -16,11 +16,21 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'admin'], function () {
-    Route::resource('imovel', 'Admin\ImoveisController');
-    Route::resource('proprietarios', 'Admin\ProprietariosController');
-    Route::resource('inquilinos', 'Admin\InquilinosController');
+
+    Route::get('/', function () {
+        return view('admin.index');
+    })->name('admin.home');
+
+    Route::group(['prefix' => 'proprietarios'], function () {
+        Route::get('/', 'Admin\ProprietariosController@index')->name('proprietarios.index');
+    });
+
+    Route::group(['prefix' => 'inquilinos'], function () {
+        Route::get('/', 'Admin\InquilinosController@index')->name('inquilinos.index');
+    });
+
+
     Route::resource('pessoas', 'Admin\PessoasController');
-//    Route::get('imovel/gerar/{id}', 'Test\TestFakerController@geradorImoveis');
-//    Route::get('proprietarios/gerar/{id}', 'Test\TestFakerController@geradorPropietarios');
-//    Route::get('inquilinos/gerar/{id}', 'Test\TestFakerController@geradorInquilinos');
+    Route::resource('imovel', 'Admin\ImoveisController');
+
 });
