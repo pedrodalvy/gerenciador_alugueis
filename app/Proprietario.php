@@ -5,6 +5,51 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * App\Proprietario
+ *
+ * @property int $id
+ * @property string $nome
+ * @property string|null $cpf
+ * @property string|null $email
+ * @property string|null $telefone
+ * @property string|null $telefone_adicional
+ * @property string|null $telefone_contato
+ * @property string|null $telefone_contato_adicional
+ * @property string|null $agencia
+ * @property string|null $conta
+ * @property int|null $operacao
+ * @property int $endereco_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read mixed $cpf_formatted
+ * @property-read mixed $telefone_formatted
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Proprietario newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Proprietario newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\Proprietario onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Proprietario query()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Proprietario whereAgencia($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Proprietario whereConta($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Proprietario whereCpf($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Proprietario whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Proprietario whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Proprietario whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Proprietario whereEnderecoId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Proprietario whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Proprietario whereNome($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Proprietario whereOperacao($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Proprietario whereTelefone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Proprietario whereTelefoneAdicional($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Proprietario whereTelefoneContato($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Proprietario whereTelefoneContatoAdicional($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Proprietario whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Proprietario withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Proprietario withoutTrashed()
+ * @mixin \Eloquent
+ */
 class Proprietario extends Model
 {
     use SoftDeletes;

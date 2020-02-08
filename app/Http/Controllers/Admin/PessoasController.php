@@ -51,9 +51,6 @@ class PessoasController extends Controller
     {
         $data = $request->only(array_keys($request->rules()));
 
-//        Pessoa::create($data);
-
-        /** @var \Illuminate\Support\Collection $pessoa */
         $pessoa = Pessoa::make($data);
 
         if($pessoa->usar_endereco == 'sim') {

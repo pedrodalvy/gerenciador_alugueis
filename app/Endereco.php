@@ -4,6 +4,32 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Endereco
+ *
+ * @property int $id
+ * @property string $logradouro
+ * @property string $numero
+ * @property string $bairro
+ * @property string|null $complemento
+ * @property string $cep
+ * @property int $municipio_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Endereco newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Endereco newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Endereco query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Endereco whereBairro($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Endereco whereCep($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Endereco whereComplemento($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Endereco whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Endereco whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Endereco whereLogradouro($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Endereco whereMunicipioId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Endereco whereNumero($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Endereco whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class Endereco extends Model
 {
     protected $table = 'enderecos';
