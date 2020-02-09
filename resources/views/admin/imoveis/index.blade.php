@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Lista de Imóveis')
+@section('title', 'Imóveis')
 
 @section('content')
     <h3>Listagem de Imóveis</h3>

@@ -5,16 +5,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Material Design Bootstrap</title>
+    <title>@yield('title', 'Gerenciador de Aluguéis')</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Select2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@1.3.2/dist/select2-bootstrap4.min.css">
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="{{ asset('css/mdb.min.css') }}" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-
 
 
 </head>
@@ -51,8 +53,40 @@
 <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="{{ asset('js/mdb.min.js') }}"></script>
+<!-- Select2 -->
+<script src="{{ asset('js/select2/select2.min.js') }}"></script>
+<script src="{{ asset('js/select2/pt-BR.js') }}"></script>
+
 <!-- Initializations -->
 <script src="{{ asset('js/main.js') }}"></script>
 </body>
 
+<script>
+    (function select2() {
+        $('.selectMunicipios').select2({
+            minimumInputLength: 3,
+            width: 'resolve',
+            theme: 'bootstrap4',
+            language: "pt-BR",
+            ajax: {
+                url: '{{ route('cidadesApi') }}',
+                data: function (params) {
+                    return {
+                        cidade: params.term
+                    }
+                },
+                processResults: function (data) {
+                    return {
+                        results: data.map(function (cidade) {
+                            return {
+                                id: cidade.id,
+                                text: cidade.nome + '/' + cidade.uf
+                            }
+                        })
+                    }
+                }
+            }
+        });
+    })();
+</script>
 </html>

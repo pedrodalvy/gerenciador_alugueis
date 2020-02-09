@@ -89,7 +89,11 @@ class ImoveisController extends Controller
     {
         $imovelEndereco = Endereco::findOrFail($imovel->endereco_id);
 
-        $imovel = (array_merge($imovel->toArray(), $imovelEndereco->toArray()));
+        $imovel = (array_merge(
+            $imovel->toArray(),
+            $imovelEndereco->toArray(),
+            $imovelEndereco->cidade->toArray()
+        ));
 
         return view('admin.imoveis.edit')
             ->with('imovel', $imovel);
@@ -100,14 +104,16 @@ class ImoveisController extends Controller
      *
      * @param Request $request
      * @param Imovel $imovel
-     * @return RedirectResponse
+     * @return string
      */
     public function update(Request $request, Imovel $imovel)
     {
         $request->validate(Imovel::RULES);
 
         $imovelEndereco = EnderecoController::editar($request);
-        if (!$imovelEndereco) return 'Falha ao editar endereço';
+        if (!$imovelEndereco) {
+            return 'Falha ao editar endereço';
+        }
 
         $imovel->fill($request->all());
 
@@ -115,7 +121,6 @@ class ImoveisController extends Controller
             return redirect()->to(route('imovel.index'));
         }
 
-        // TODO implemetar rollback de endereço
         return 'Falha ao editar o cadastro';
     }
 

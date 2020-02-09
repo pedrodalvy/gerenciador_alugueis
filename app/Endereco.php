@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * App\Endereco
@@ -29,6 +30,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Endereco whereNumero($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Endereco whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Cidade $cidade
  */
 class Endereco extends Model
 {
@@ -43,4 +45,10 @@ class Endereco extends Model
         'municipio_id' => 'required|numeric'
     ];
 
+    /**
+     * @return HasOne
+     */
+    public function cidade() {
+        return $this->hasOne(Cidade::class, 'id', 'municipio_id');
+    }
 }
