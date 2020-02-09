@@ -65,7 +65,7 @@
     (function select2() {
         $('.selectMunicipios').select2({
             minimumInputLength: 3,
-            width: 'resolve',
+            width: '100%',
             theme: 'bootstrap4',
             language: "pt-BR",
             ajax: {
