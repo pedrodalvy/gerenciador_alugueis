@@ -47,6 +47,8 @@
 
 <!-- jQuery tooltips -->
 <script type="text/javascript" src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.mask.js') }}"></script>
+
 <!-- Bootstrap tooltips -->
 <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
 <!-- Bootstrap core JavaScript -->
@@ -62,6 +64,22 @@
 </body>
 
 <script>
+    $(document).ready(function(){
+        $('.money').mask('000.000.000.000.000,00', {reverse: true});
+        $('.cep').mask('00000-000');
+        $('.cpf').mask('000.000.000-00');
+
+
+        let maskBehavior = function (val) {
+                return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+            },
+            options = {onKeyPress: function(val, e, field, options) {
+                    field.mask(maskBehavior.apply({}, arguments), options);
+                }
+            };
+
+        $('.phone').mask(maskBehavior, options);
+    });
     (function select2() {
         $('.selectMunicipios').select2({
             minimumInputLength: 3,

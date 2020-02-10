@@ -51,12 +51,13 @@ class PessoasController extends Controller
     {
         $data = $request->only(array_keys($request->rules()));
 
+        $data['cpf'] = preg_replace('/\D/', '',  $data['cpf'] );
+
         $pessoa = Pessoa::make($data);
 
         if($pessoa->usar_endereco == 'sim') {
             $pessoa->endereco->create($request);
         }
-        dd((new PessoaRequest())->rules($request));
         $pessoa->save();
 
         return redirect()->route('pessoas.index')

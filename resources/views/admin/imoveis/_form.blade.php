@@ -17,13 +17,13 @@
     <div class="col col-lg-4 col-md-4 col-12">
         @component('form._form_group', ['field' => 'valor_venda'])
             {{ Form::label('valor_venda', 'Valor para venda', ['class' => 'control-label']) }}
-            {{ Form::text('valor_venda', null, ['class' => 'form-control']) }}
+            {{ Form::text('valor_venda', null, ['class' => 'form-control money']) }}
         @endcomponent
     </div>
     <div class="col col-lg-4 col-md-4 col-12">
         @component('form._form_group', ['field' => 'valor_aluguel'])
             {{ Form::label('valor_aluguel', 'Valor para aluguel', ['class' => 'control-label']) }}
-            {{ Form::text('valor_aluguel', null, ['class' => 'form-control']) }}
+            {{ Form::text('valor_aluguel', null, ['class' => 'form-control money']) }}
         @endcomponent
     </div>
 </div>
@@ -37,7 +37,7 @@
     <div class="col col-lg-3 col-md-3 col-12">
         @component('form._form_group', ['field' => 'cep'])
             {{ Form::label('cep', 'CEP', ['class' => 'control-label']) }}
-            {{ Form::text('cep', null, ['class' => 'form-control']) }}
+            {{ Form::text('cep', null, ['class' => 'form-control cep']) }}
         @endcomponent
     </div>
     <div class="col col-lg-9 col-md-9 col-12">
