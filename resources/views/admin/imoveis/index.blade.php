@@ -38,5 +38,5 @@
     </table>
     {{ $imoveis->links() }}
     <br>
-    <a class="btn btn-outline-secondary" href="{{ route('imovel.create') }}">Novo Imóvel</a>
+    <a class="btn btn-outline-primary" href="{{ route('imovel.create') }}">Novo Imóvel</a>
 @endsection

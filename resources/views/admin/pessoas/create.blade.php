@@ -13,7 +13,7 @@
         @include('admin.pessoas._form')
         @include('admin.enderecos._form')
 
-        <button type="submit" class="btn btn-outline-secondary">Salvar</button>
+        <button type="submit" class="btn btn-outline-primary">Salvar</button>
     
     {{ Form::close() }}
 @endsection

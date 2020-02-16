@@ -44,5 +44,5 @@
         {{ $pessoas->links() }}
         <br><br>
     </div>
-    <a class="btn btn-outline-secondary" href="{{ route('pessoas.create') }}">Novo cadastro</a>
+    <a class="btn btn-outline-primary" href="{{ route('pessoas.create') }}">Novo cadastro</a>
 @endsection

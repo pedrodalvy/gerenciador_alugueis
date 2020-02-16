@@ -10,7 +10,7 @@
 
         @include('admin.imoveis._form')
 
-        <a class="btn btn-outline-secondary" href="{{ route('imovel.index') }}">Voltar</a>
+        <a class="btn btn-outline-danger" href="{{ route('imovel.index') }}">Voltar</a>
         <button type="submit" class="btn btn-outline-primary">Gravar</button>
     {!! Form::close() !!}
 @endsection
