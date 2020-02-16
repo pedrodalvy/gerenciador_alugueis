@@ -11,6 +11,7 @@
     {{ Form::open(['route' => 'pessoas.store', 'method' => 'POST']) }}
 
         @include('admin.pessoas._form')
+        @include('admin.enderecos._form')
 
         <button type="submit" class="btn btn-outline-secondary">Salvar</button>
     

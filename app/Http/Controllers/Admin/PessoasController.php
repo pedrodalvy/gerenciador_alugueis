@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Endereco;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PessoaRequest;
 use App\Models\Pessoa;
@@ -9,6 +10,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 /**
@@ -38,13 +40,14 @@ class PessoasController extends Controller
     public function create()
     {
         return view('admin.pessoas.create')
-            ->with('pessoa', new Pessoa());
+            ->with('pessoa', new Pessoa())
+            ->with('endereco', new Endereco());
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param PessoaRequest $request
      * @return RedirectResponse
      */
     public function store(PessoaRequest $request)
@@ -67,8 +70,8 @@ class PessoasController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return void
      */
     public function show($id)
     {
@@ -78,8 +81,8 @@ class PessoasController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return void
      */
     public function edit($id)
     {
@@ -90,8 +93,8 @@ class PessoasController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return void
      */
     public function update(Request $request, $id)
     {
@@ -101,8 +104,8 @@ class PessoasController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return void
      */
     public function destroy($id)
     {

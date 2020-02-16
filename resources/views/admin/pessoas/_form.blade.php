@@ -51,16 +51,17 @@
 </div>
 
 <div class="row">
-    <div class="col col-lg-3 col-md-2 col-12">
+    <div class="col col-lg-3 col-md-2 col-12 mt-lg-4 mt-md-4 mt-sm-4 mt-0 mb-lg-0 mb-md-0 mb-sm-0 mb-3">
         <div class="radio {{ $errors->has('sexo') ? 'has-error' : '' }}">
-            Sexo:
+
             <div class="row mt-3">
-                <div class="col col-lg-4 col-md-4 col-12">
+                    <span class="ml-3">Sexo:</span>
+                <div class="col">
                     <label>
                         {{ Form::radio('sexo', 'f') }} Feminino
                     </label>
                 </div>
-                <div class="col col-lg-4 col-md-4 col-12">
+                <div class="col col-lg-5 col-md-5 col-5">
                     <label>
                         {{ Form::radio('sexo', 'm') }} Masculino
                     </label>
